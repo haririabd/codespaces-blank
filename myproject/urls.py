@@ -17,10 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+import os
 
 urlpatterns = [
     path("", include("mainsite.urls")),
     path("account/", include("accounts.urls")),
     path("admin/", admin.site.urls),
-    path("__reload__/", include("django_browser_reload.urls")),
 ]
+
+if 'CODESPACE_NAME' in os.environ:
+    urlpatterns += [
+        path("__reload__/", include("django_browser_reload.urls")),
+    ]

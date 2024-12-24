@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+  </head>
+  <body>
+    <h1>Dashboard here</h1>
+    <p>Only logged in user able to view</p>
+    <p>
+      if not logged in, will be directed to
+      <a href="{% url 'login' %}">login</a> page<br /><br />
+      
+      <p>Hello {{request.user}}, </p>
+      <a href="{% url 'logout' %}">Logout</a> here
+    </p>
+  </body>
+</html>
