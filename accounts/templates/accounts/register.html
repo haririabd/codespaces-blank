@@ -3,16 +3,17 @@
     {% block content %}
         <link href="{% static 'accounts/css/sign-in.css' %}" rel="stylesheet">
         <main class="form-signin w-100 m-auto">
-            <form>
-              <img class="mb-4" src="{% static 'logoonly_border.png' %}" alt="" width="72" height="57">
+            <form method="POST" action="">
+              {% csrf_token %}
+              <img class="mb-4 mx-auto d-block" src="{% static 'logoonly_border.png' %}" alt="" width="100">
               <h1 class="h2 mb-3 fw-normal d-flex justify-content-center">Register Account</h1>
           
               <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="username">
+                <label for="floatingInput">Username</label>
               </div>
               <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword">Password</label>
               </div>
           
@@ -23,11 +24,14 @@
                 </label>
               </div>
               <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-              <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
+              {% for message in messages %}
+                <div id="messages" class="mt-4 text-center">{{ message }}</div>
+              {% endfor %}
+              <p class="mt-5 mb-3 text-body-secondary text-center">&copy; 2017–2024</p>
             </form>
             <div class="mt-4">
                 <div class="d-flex justify-content-center links">
-                    Already have an account?<a href="{% url 'login' %}" class="ms-2"> Log In</a>
+                    Don't have an account?<a href="{% url 'login' %}" class="ms-2"> Log In</a>
                 </div>
             </div>
           </main>
