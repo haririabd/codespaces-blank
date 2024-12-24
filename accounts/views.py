@@ -7,13 +7,13 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def register(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('profile')
     else:
         return render(request, 'accounts/register.html', {})
 
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('profile')
     else:
         if request.method == 'POST':
             username = request.POST.get('username')
