@@ -5,7 +5,7 @@
         <main class="form-signin w-100 m-auto">
             <form>
               <img class="mb-4" src="{% static 'logoonly_border.png' %}" alt="" width="72" height="57">
-              <h1 class="h2 mb-3 fw-normal d-flex justify-content-center">Log In</h1>
+              <h1 class="h2 mb-3 fw-normal d-flex justify-content-center">Register Account</h1>
           
               <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
@@ -27,7 +27,7 @@
             </form>
             <div class="mt-4">
                 <div class="d-flex justify-content-center links">
-                    Don't have an account?<a href="{% url 'register' %}" class="ms-2"> Register</a>
+                    Already have an account?<a href="{% url 'login' %}" class="ms-2"> Log In</a>
                 </div>
             </div>
           </main>
