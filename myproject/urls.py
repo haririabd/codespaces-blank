@@ -21,8 +21,9 @@ import os
 
 urlpatterns = [
     path("", include("mainsite.urls")),
-    path("account/", include("accounts.urls")),
     path("admin/", admin.site.urls),
+    path("account/", include("accounts.urls")),
+    path("purchasing/", include("diyproduct.urls")),
 ]
 
 if 'CODESPACE_NAME' in os.environ:
