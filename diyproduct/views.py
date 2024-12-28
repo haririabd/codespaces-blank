@@ -6,6 +6,9 @@ from django.http import HttpResponse
 def index(request):
     return render(request, 'diyproduct/index.html', {})
 
+def new_order(request):
+    return render(request, 'diyproduct/new_order.html', {})
+
 def upload_handheld(request):
     if request.method == 'POST':
         form = UploadHandheld(request.POST, request.FILES)
@@ -18,10 +21,23 @@ def upload_handheld(request):
             file = request.FILES['file'] 
             # Read the file content (example with utf-8 encoding)
             file_content = file.read().decode('utf-8') 
-            # Process the file content (e.g., parse data, extract information) 
-            # ...
+            po_items = []
 
-            return HttpResponse("File uploaded successfully.")
+            # Process the file content (e.g., parse data, extract information) 
+            for line in file_content.splitlines():
+                if not line.strip(): # Check if the line is empty
+                    continue # Skip empty lines
+
+                try:
+                    sku,quantity = line.strip().split(',', 1)
+                    po_items.append({'sku': int(sku), 'quantity': int(float(quantity))})
+                except ValueError:
+                    # Handle invalid lines (e.g., incorrect format)
+                    print(f"Invalid line: {line}")
+                    continue
+
+            return render(request, 'diyproduct/upload_handheld.html', {'po_items': po_items})
+        
     else:
         form = UploadHandheld()
     return render(request, 'diyproduct/upload_handheld.html', {'form': form})

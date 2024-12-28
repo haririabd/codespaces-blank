@@ -12,6 +12,22 @@
           {% csrf_token %} {{ form.as_p }}
           <button type="submit">Upload</button>
         </form>
+        <table>
+          <thead>
+            <tr>
+              <th>SKU</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in po_items %}
+            <tr>
+              <td>{{ item.sku }}</td>
+              <td>{{ item.quantity }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
