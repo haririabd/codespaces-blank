@@ -24,4 +24,4 @@ def upload_handheld(request):
             return HttpResponse("File uploaded successfully.")
     else:
         form = UploadHandheld()
-    return render(request, 'diyproduct/neworder.html', {'form': form})
+    return render(request, 'diyproduct/upload_handheld.html', {'form': form})
