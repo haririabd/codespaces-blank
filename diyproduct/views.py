@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import UploadHandheld#, addErrorItem
+from .forms import UploadHandheld, manualAddItem
 from django.http import HttpResponse
 from . import views
 
@@ -7,8 +7,8 @@ from . import views
 def index(request):
     return render(request, 'diyproduct/index.html', {})
 
-def new_order(request):
-    return render(request, 'diyproduct/new_order.html', {})
+def orders(request):
+    return render(request, 'diyproduct/orders.html', {})
 
 def upload_handheld(request):
     if request.method == 'POST':
@@ -49,11 +49,10 @@ def upload_handheld(request):
         form = UploadHandheld()
     return render(request, 'diyproduct/upload_handheld.html', {'form': form})
 
-#def addErrorItem(request):
-#    if request.method == 'POST':
-#        form = addErrorItem(request.POST)
-#        sku = request.POST.sku
-#        quantity = request.POST. quantity
-#        if form.is_valid():
-#            for line in upload_handheld.error_items():
-#                upload_handheld.po_items.append({'sku': sku, 'quantity': quantity})
+def manualAddItem(request):
+    if request.method == 'POST':
+        form = manualAddItem(request.POST)
+        sku = 0
+        quantity = 0
+        if form.is_valid():
+            print(sku, quantity)

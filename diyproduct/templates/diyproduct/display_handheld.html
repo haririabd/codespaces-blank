@@ -1,6 +1,5 @@
 {% extends "diyproduct/base.html" %} {% load static %} {% block content %}
 <h1 class="h3 mb-3">New Order</h1>
-
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -16,10 +15,6 @@
 </div>
 <div class="row">
   <div class="col">
-    <div class="alert alert-success" role="alert">
-      <span class="me-4"><b>SKU Detected:</b> {{ total_item }}</span>
-      <b><span>Total Error :</b> {{ total_error }}</span><br><br>
-    </div>
     <table class="table table-danger mt-2">
       <thead>
         <tr>
@@ -53,7 +48,26 @@
 
   </div>
   <div class="col">
-    
+    <div class="card">
+      <div class="container">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Handheld Scanner Data</h5>
+        </div>
+        <div class="card-body">
+          <div class="alert alert-success" role="alert">
+            <span class="me-4"><b>SKU Detected:</b> {{ total_item }}</span>
+            <b><span>Total Error :</b> {{ total_error }}</span><br><br>
+          </div>
+          <form method="post" action="">
+            {% csrf_token %}
+            {% for item in po_items %}
+              <input type="hidden" name="po_items" value="{{ item.sku }},{{ item.quantity }}">
+            {% endfor %}
+            <button type="submit">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

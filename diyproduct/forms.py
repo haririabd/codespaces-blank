@@ -18,6 +18,6 @@ class UploadHandheld(forms.Form):
         ]
     )
 
-#class addErrorItem(forms.Form):
-#    sku = forms.IntegerField(widget = forms.TextInput)
-#    quantity = forms.IntegerField(widget = forms.TextInput)
+class manualAddItem(forms.Form):
+    sku = forms.IntegerField(widget = forms.TextInput)
+    quantity = forms.IntegerField(widget = forms.TextInput)

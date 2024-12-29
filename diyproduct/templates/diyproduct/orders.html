@@ -1,0 +1,77 @@
+{% extends "diyproduct/base.html" %} {% load static %} {% block content %}
+<div class="row">
+  <div class="col-6">
+    <h1 class="h3 mb-3">Order</h1>
+  </div>
+  <div class="col-6 text-end">
+    <a href="http://"><button type="button" class="btn btn-primary">Create Order</button></a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">
+          Title
+        </h5>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead class="table-light">
+            <tr>
+              <th>Order No.</th>
+              <th>Date</th>
+              <th>Store</th>
+              <th>Item</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#1000</td>
+              <td>29 Dec, 2024</td>
+              <td>Kubang Kerian, Kelantan</td>
+              <td>51</td>
+              <td>Complete</td>
+              <td>..</td>
+            </tr>
+            <tr>
+              <td>#1001</td>
+              <td>29 Dec, 2024</td>
+              <td>Kubang Kerian, Kelantan</td>
+              <td>51</td>
+              <td>Complete</td>
+              <td>..</td>
+            </tr>
+            <tr>
+              <td>#1002</td>
+              <td>29 Dec, 2024</td>
+              <td>Kubang Kerian, Kelantan</td>
+              <td>51</td>
+              <td>Complete</td>
+              <td>..</td>
+            </tr>
+            <tr>
+              <td>#1003</td>
+              <td>20 Dec, 2024</td>
+              <td>Pasir Tumbuh, Kelantan</td>
+              <td>68</td>
+              <td>Complete</td>
+              <td>..</td>
+            </tr>
+            <tr>
+              <td>#1004</td>
+              <td>29 Dec, 2024</td>
+              <td>Mayang Mall, Terengganu</td>
+              <td>15</td>
+              <td>In Progress</td>
+              <td>..</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

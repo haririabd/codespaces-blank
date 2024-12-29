@@ -1,17 +1,18 @@
 {% extends "diyproduct/base.html" %} {% load static %} {% block content %}
-<h1 class="h3 mb-3">New Order</h1>
+<h1 class="h3 mb-3">Order</h1>
 
 <div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-header">
         <h5 class="card-title mb-0">
-          Add product below or upload handheld scanner data
+          Title
         </h5>
         <form action="{% url 'upload_handheld' %}" method="post">
           {% csrf_token %}
-          <input type="submit" value="Upload" />
+          <input class="btn btn-primary" type="submit" value="Upload" />
         </form>
+        <button type="button" class="btn btn-primary">Create Order</button>
       </div>
       <div class="card-body"></div>
     </div>
