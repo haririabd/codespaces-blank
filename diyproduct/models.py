@@ -2,15 +2,27 @@ from django.db import models
 
 # Create your models here.
 
-class Category(models.Model): 
+class ProductCategory(models.Model): 
     name = models.CharField(max_length=50)
 
     @staticmethod
     def get_all_categories(): 
-        return Category.objects.all() 
+        return ProductCategory.objects.all() 
   
     def __str__(self): 
         return self.name
+
+class State(models.Model):
+    state = models.CharField(max_length=100)
+
+    def __str__(self): 
+        return self.state
+
+class Brand(models.Model):
+    brand = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.brand    
 
 class User(models.Model): 
     first_name = models.CharField(max_length=50)
@@ -18,6 +30,7 @@ class User(models.Model):
     phone = models.CharField(max_length=10)
     email = models.EmailField()
     password = models.CharField(max_length=100)
+    store = models.ForeignKey("Store", on_delete=models.DO_NOTHING)
   
     # to save the data 
     def register(self):
@@ -37,8 +50,10 @@ class User(models.Model):
         return False
 
 class Store(models.Model):
-    name = models.CharField(max_length=100)
-    state = models.CharField(max_length=50)
+    brand = models.ForeignKey("Brand", on_delete=models.CASCADE, null=True)
+    store_name = models.CharField(max_length=100)
+    store_code = models.CharField(max_length=50)
+    state = models.ForeignKey("State", on_delete=models.CASCADE)
 
     def register(self):
         self.save()
@@ -47,10 +62,10 @@ class Store(models.Model):
     def get_all_store(): 
         return Store.objects.all() 
   
-    def __str__(self): 
-        return self.name
+    def __str__(self):
+        return self.store_name
 
 class PurchaseOrder(models.Model):
     po_number = models.CharField(max_length=50)
-    name = models.ForeignKey("Store", on_delete=models.CASCADE)
+    store_name = models.ForeignKey("Store", on_delete=models.CASCADE)
     po_date = models.DateField()

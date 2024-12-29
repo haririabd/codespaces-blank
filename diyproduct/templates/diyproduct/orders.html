@@ -4,16 +4,16 @@
     <h1 class="h3 mb-3">Order</h1>
   </div>
   <div class="col-6 text-end">
-    <a href="http://"><button type="button" class="btn btn-primary">Create Order</button></a>
+    <a href="{% url 'create_order' %}"
+      ><button type="button" class="btn btn-primary">Create Order</button></a
+    >
   </div>
 </div>
 <div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h5 class="card-title mb-0">
-          Title
-        </h5>
+        <h5 class="card-title mb-0">Title</h5>
       </div>
       <div class="card-body">
         <table class="table">

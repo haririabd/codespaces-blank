@@ -10,6 +10,9 @@ def index(request):
 def orders(request):
     return render(request, 'diyproduct/orders.html', {})
 
+def create_order(request):
+    return render (request, 'diyproduct/new_order.html', {})
+
 def upload_handheld(request):
     if request.method == 'POST':
         form = UploadHandheld(request.POST, request.FILES)
@@ -49,10 +52,10 @@ def upload_handheld(request):
         form = UploadHandheld()
     return render(request, 'diyproduct/upload_handheld.html', {'form': form})
 
-def manualAddItem(request):
-    if request.method == 'POST':
-        form = manualAddItem(request.POST)
-        sku = 0
-        quantity = 0
-        if form.is_valid():
-            print(sku, quantity)
+# def manualAddItem(request):
+#     if request.method == 'POST':
+#         form = manualAddItem(request.POST)
+#         sku = 0
+#         quantity = 0
+#         if form.is_valid():
+#             print(sku, quantity)
