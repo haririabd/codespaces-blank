@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .forms import UploadHandheld
+from .forms import UploadHandheld#, addErrorItem
 from django.http import HttpResponse
+from . import views
 
 # Create your views here.
 def index(request):
@@ -22,6 +23,7 @@ def upload_handheld(request):
             # Read the file content (example with utf-8 encoding)
             file_content = file.read().decode('utf-8') 
             po_items = []
+            error_items = []
 
             # Process the file content (e.g., parse data, extract information) 
             for line in file_content.splitlines():
@@ -33,11 +35,25 @@ def upload_handheld(request):
                     po_items.append({'sku': int(sku), 'quantity': int(float(quantity))})
                 except ValueError:
                     # Handle invalid lines (e.g., incorrect format)
-                    print(f"Invalid line: {line}")
+                    error_items.append({'line': line})
                     continue
-
-            return render(request, 'diyproduct/upload_handheld.html', {'po_items': po_items})
+            context = {
+                'po_items': po_items,
+                'error_items': error_items,
+                'total_item': len(po_items),
+                'total_error': len(error_items)
+            }
+            return render(request, 'diyproduct/display_handheld.html', context)
         
     else:
         form = UploadHandheld()
     return render(request, 'diyproduct/upload_handheld.html', {'form': form})
+
+#def addErrorItem(request):
+#    if request.method == 'POST':
+#        form = addErrorItem(request.POST)
+#        sku = request.POST.sku
+#        quantity = request.POST. quantity
+#        if form.is_valid():
+#            for line in upload_handheld.error_items():
+#                upload_handheld.po_items.append({'sku': sku, 'quantity': quantity})
