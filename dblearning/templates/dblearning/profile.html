@@ -8,6 +8,8 @@
 <body>
     <h1>{{ profile.user.username }}</h1>
     <p>Hi {{ profile.user.first_name }}</p>
+    <p>You are from {{ profile.user.store }}</p>
+    <p>Located in {{ profile.user.store.state }}</p>
     <p><strong>Website:</strong> <a href="{{ profile.website }}">{{ profile.website }}</a></p>
 </body>
 </html>
