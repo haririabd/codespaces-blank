@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .forms import UploadHandheld, manualAddItem
-from django.http import HttpResponse
-from . import views
+import datetime
 
 # Create your views here.
 def index(request):
@@ -11,7 +10,13 @@ def orders(request):
     return render(request, 'diyproduct/orders.html', {})
 
 def create_order(request):
-    return render (request, 'diyproduct/new_order.html', {})
+    prefix = "DIY"
+    num1 = int(datetime.datetime.now().strftime("%d%m%y%H%M%S"))
+    ordernum = prefix + "-" + str(num1)
+    context = {
+        'ordernum': ordernum,
+    }
+    return render (request, 'diyproduct/new_order.html', context)
 
 def upload_handheld(request):
     if request.method == 'POST':
