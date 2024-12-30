@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "accounts",
     "mainsite",
     "diyproduct",
+    "dblearning",
 ]
 
 MIDDLEWARE = [

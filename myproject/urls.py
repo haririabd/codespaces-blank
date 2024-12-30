@@ -21,6 +21,7 @@ import os
 
 urlpatterns = [
     path("", include("mainsite.urls")),
+    path("dblearning/", include("dblearning.urls")),
     path("admin/", admin.site.urls),
     path("account/", include("accounts.urls")),
     path("purchasing/", include("diyproduct.urls")),
