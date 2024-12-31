@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import UploadHandheld, manualAddItem
 import datetime
+from accounts.models import Profile
 
 # Create your views here.
 def index(request):
@@ -10,7 +11,7 @@ def orders(request):
     return render(request, 'diyproduct/orders.html', {})
 
 def create_order(request):
-    prefix = "DIY" #this need to change to db entry
+    prefix = Profile.objects.get(pk=request.user.id).store.brand.name
     num1 = int(datetime.datetime.now().strftime("%d%m%y%H%M%S"))
     ordernum = prefix + "-" + str(num1)
     context = {

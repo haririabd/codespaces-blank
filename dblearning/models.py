@@ -30,6 +30,7 @@ class Store(models.Model):
     # It’s suggested, but not required, that the name of a ForeignKey field (state in the example below) be the name of the model (State in below example), lowercase.
     # You can call the field whatever you want
     state = models.ForeignKey(State, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name
