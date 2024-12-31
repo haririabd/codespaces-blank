@@ -1,1 +1,1 @@
-default_app_config = 'dblearning.apps.UserAppConfig'
+# default_app_config = 'dblearning.apps.UserAppConfig'

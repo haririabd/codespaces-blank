@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .forms import CreateUserForm
+from .models import Profile
 
 # Create your views here.
 # Register, login & logout view and HTML referenced from https://www.youtube.com/watch?v=tUqUdu0Sjyc
@@ -30,7 +31,7 @@ def loginPage(request):
 
             if user is not None:
                 login(request, user)
-                return redirect("/")
+                return redirect('profile')
             else:
                 messages.info(request, 'Username OR password is incorrect')
         context = {}
@@ -43,7 +44,9 @@ def logoutUser(request):
 @login_required(login_url='login')
 def home(request):
     users = User.objects.all()
+    states = Profile.objects.get(pk=request.user.id).store.state.name
     context = {
-        'users': users
+        'users': users,
+        'state': states
     }
     return render(request, 'accounts/index.html', context)

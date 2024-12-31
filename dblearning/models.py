@@ -33,11 +33,3 @@ class Store(models.Model):
 
     def __str__(self):
         return self.name
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    website = models.URLField(blank=True)
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.user.username

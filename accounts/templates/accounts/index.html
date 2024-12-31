@@ -13,16 +13,22 @@
     </h5>
   </div>
   <div class="container text-center">
-    <p>Hello {{request.user}}, below is the list of current user:</p>
+    <p>
+      Hello {{request.user}} from {{state}}, below is the list of current user:
+    </p>
     <table class="table table-striped">
       <tr>
         <th>username</th>
         <th>Email</th>
+        <th>Store</th>
+        <th>State</th>
       </tr>
       {% for user in users %}
       <tr>
         <td>{{user.username}}</td>
         <td>{{user.email}}</td>
+        <td>{{user.store}}</td>
+        <td>{{user.state}}</td>
       </tr>
       {% endfor %}
     </table>
