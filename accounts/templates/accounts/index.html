@@ -14,7 +14,8 @@
   </div>
   <div class="container text-center">
     <p>
-      Hello {{request.user}} from {{state}}, below is the list of current user:
+      Hello {{request.user}} from {{user.profile.store.state}}, below is the
+      list of current user:
     </p>
     <table class="table table-striped">
       <tr>
@@ -28,7 +29,7 @@
         <td>{{user.username}}</td>
         <td>{{user.email}}</td>
         <td>{{user.profile.store}}</td>
-        <td>{{user.profile.store.state}}</td>
+        <td>{{user.profile.store.brand}}</td>
       </tr>
       {% endfor %}
     </table>

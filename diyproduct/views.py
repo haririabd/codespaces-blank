@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import UploadHandheld, manualAddItem
 import datetime
-from accounts.models import Profile
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -11,13 +11,17 @@ def orders(request):
     return render(request, 'diyproduct/orders.html', {})
 
 def create_order(request):
-    prefix = Profile.objects.get(pk=request.user.id).store.brand.name
-    num1 = int(datetime.datetime.now().strftime("%d%m%y%H%M%S"))
-    ordernum = prefix + "-" + str(num1)
-    context = {
-        'ordernum': ordernum,
-    }
-    return render (request, 'diyproduct/new_order.html', context)
+    if request.user.is_authenticated:
+        prefix = User.objects.get(pk=request.user.id).profile.store.brand
+        num1 = int(datetime.datetime.now().strftime("%d%m%y%H%M%S"))
+        ordernum = f'{prefix} - {str(num1)}'
+        context = {
+            'ordernum': ordernum,
+        }
+        return render (request, 'diyproduct/new_order.html', context)
+    else:
+        context = {}
+        return render (request, 'diyproduct/new_order.html', context)
 
 def upload_handheld(request):
     if request.method == 'POST':
