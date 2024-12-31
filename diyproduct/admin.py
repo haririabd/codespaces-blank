@@ -1,18 +1,18 @@
 from django.contrib import admin
-from .models import ProductCategory, Store, PurchaseOrder, User, State, Brand
+# from .models import ProductCategory, Store, PurchaseOrder, User, State, Brand
 
-# Register your models here.
-admin.site.register(ProductCategory)
-admin.site.register(PurchaseOrder)
-admin.site.register(State)
-admin.site.register(Brand)
+# Register your models here. Disable first. Not in use now
+# admin.site.register(ProductCategory)
+# admin.site.register(PurchaseOrder)
+# admin.site.register(State)
+# admin.site.register(Brand)
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ("email", "first_name", "last_name", "store")
+# class UserAdmin(admin.ModelAdmin):
+#     list_display = ("email", "first_name", "last_name", "store")
 
-admin.site.register(User, UserAdmin)
+# admin.site.register(User, UserAdmin)
 
-class StoreAdmin(admin.ModelAdmin):
-    list_display = ("store_name", "brand", "store_code", "state")
+# class StoreAdmin(admin.ModelAdmin):
+#     list_display = ("store_name", "brand", "store_code", "state")
 
-admin.site.register(Store, StoreAdmin)
+# admin.site.register(Store, StoreAdmin)

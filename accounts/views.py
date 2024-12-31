@@ -3,13 +3,20 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from .forms import CreateUserForm
 # Create your views here.
-def register(request):
-    if request.user.is_authenticated:
-        return redirect('profile')
-    else:
-        return render(request, 'accounts/register.html', {})
+# Register, login & logout view and HTML referenced from https://www.youtube.com/watch?v=tUqUdu0Sjyc
+def registerPage(request):
+    form = CreateUserForm()
+    # the registration page is supposed to be viewed only by admin. no public registration
+    # if not request.user.is_authenticated:
+    #     return redirect('profile')
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form': form}
+    return render(request, 'accounts/register.html', context)
 
 def loginPage(request):
     if request.user.is_authenticated:
