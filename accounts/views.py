@@ -44,9 +44,9 @@ def logoutUser(request):
 @login_required(login_url='login')
 def home(request):
     users = User.objects.all()
-    states = Profile.objects.get(pk=request.user.id).store.state.name
+    #states = Profile.objects.get(user_id=request.user.id).store.state.name
     context = {
-        'users': users,
-        'state': states
+        'users': users
+        #'state': states
     }
     return render(request, 'accounts/index.html', context)
