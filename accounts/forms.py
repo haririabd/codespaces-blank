@@ -2,7 +2,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from django.forms import TextInput, EmailInput, PasswordInput
+from django.forms import TextInput, EmailInput
 
 # forms widget for styling.
 # reference from https://medium.com/swlh/how-to-style-your-django-forms-7e8463aae4fa

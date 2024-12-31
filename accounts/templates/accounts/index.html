@@ -1,19 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile</title>
-  </head>
-  <body>
-    <h1>Dashboard here</h1>
-    <p>Only logged in user able to view</p>
-    <p>
-      if not logged in, will be directed to
+{% extends 'accounts/base.html' %} {% load static %} {% block content %}
+<main class="w-100 m-auto">
+  <h1 class="h2 mb-3 fw-normal d-flex justify-content-center">
+    Dashboard here
+  </h1>
+  <div class="d-block text-center">
+    <h3>Only logged in user able to view this page</h3>
+    <h5>
+      if not logged in, you will be directed to
       <a href="{% url 'login' %}">login</a> page<br /><br />
-      
-      <p>Hello {{request.user}}, </p>
+      <a href="{% url 'register' %}">Register</a> new account here<br /><br />
       <a href="{% url 'logout' %}">Logout</a> here
-    </p>
-  </body>
-</html>
+    </h5>
+  </div>
+  <div class="container text-center">
+    <p>Hello {{request.user}}, below is the list of current user:</p>
+    <table class="table table-striped">
+      <tr>
+        <th>username</th>
+        <th>Email</th>
+      </tr>
+      {% for user in users %}
+      <tr>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</main>
+{% endblock %}

@@ -1,20 +1,21 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from .forms import CreateUserForm
+
 # Create your views here.
 # Register, login & logout view and HTML referenced from https://www.youtube.com/watch?v=tUqUdu0Sjyc
 def registerPage(request):
     form = CreateUserForm()
-    # the registration page is supposed to be viewed only by admin. no public registration
-    # if not request.user.is_authenticated:
-    #     return redirect('profile')
+
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            return HttpResponseRedirect(reverse('profile'))
     context = {'form': form}
     return render(request, 'accounts/register.html', context)
 
@@ -41,4 +42,8 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def home(request):
-    return render(request, 'accounts/index.html', {})
+    users = User.objects.all()
+    context = {
+        'users': users
+    }
+    return render(request, 'accounts/index.html', context)

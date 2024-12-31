@@ -10,7 +10,7 @@ def orders(request):
     return render(request, 'diyproduct/orders.html', {})
 
 def create_order(request):
-    prefix = "DIY"
+    prefix = "DIY" #this need to change to db entry
     num1 = int(datetime.datetime.now().strftime("%d%m%y%H%M%S"))
     ordernum = prefix + "-" + str(num1)
     context = {
