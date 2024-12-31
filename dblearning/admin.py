@@ -8,6 +8,6 @@ admin.site.register(Brand)
 # admin.site.register(Profile)
 
 class StoreAdmin(admin.ModelAdmin):
-    list_display = ("name", "code", "state")
+    list_display = ("name", "brand", "code", "state")
 
 admin.site.register(Store, StoreAdmin)
