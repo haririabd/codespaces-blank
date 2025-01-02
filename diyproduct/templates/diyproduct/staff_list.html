@@ -1,0 +1,47 @@
+{% extends "diyproduct/base.html" %} {% load static %} {% block content %}
+<div class="row">
+  <div class="col-6">
+    <h1 class="h3 mb-3">Staff List</h1>
+  </div>
+  <div class="col-6 text-end">
+    <a href="{% url 'create_staff' %}"
+      ><button type="button" class="btn btn-primary">Create Staff</button></a
+    >
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Title</h5>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead class="table-light">
+            <tr>
+              <th>Username</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Store</th>
+              <th>Brand</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <td>{{user.username}}</td>
+              <td>{{user.first_name}}</td>
+              <td>{{user.last_name}}</td>
+              <td>{{user.profile.store}}</td>
+              <td>{{user.profile.store.brand}}</td>
+              <td>..</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -51,7 +51,7 @@
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="pages-profile.html">
+              <a class="sidebar-link" href="{% url 'profilePage' %}">
                 <i class="align-middle" data-feather="user"></i>
                 <span class="align-middle">Profile</span>
               </a>
@@ -81,9 +81,9 @@
             <li class="sidebar-header">Account</li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="ui-buttons.html">
+              <a class="sidebar-link" href="{% url 'staffpage' %}">
                 <i class="align-middle" data-feather="square"></i>
-                <span class="align-middle">Profile</span>
+                <span class="align-middle">Staff</span>
               </a>
             </li>
 
@@ -330,7 +330,7 @@
                   <span class="text-dark">Charles Hall</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                  <a class="dropdown-item" href="pages-profile.html"
+                  <a class="dropdown-item" href="{% url 'profilePage' %}"
                     ><i class="align-middle me-1" data-feather="user"></i>
                     Profile</a
                   >

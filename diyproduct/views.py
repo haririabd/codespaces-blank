@@ -10,6 +10,19 @@ def index(request):
 def orders(request):
     return render(request, 'diyproduct/orders.html', {})
 
+def userProfile(request):
+    return render(request, 'diyproduct/userprofile.html', {})
+
+def staffPage(request):
+    users = User.objects.all()
+    context = {
+        'users': users
+    }
+    return render(request, 'diyproduct/staff_list.html', context)
+
+def create_staff(request):
+    return render(request, 'diyproduct/new_staff.html', {})
+
 def create_order(request):
     if request.user.is_authenticated:
         prefix = User.objects.get(pk=request.user.id).profile.store.brand
