@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from .forms import UploadHandheld, manualAddItem
+from django.shortcuts import render, HttpResponseRedirect
+from django.urls import reverse
+from .forms import UploadHandheld, manualAddItem, CreateStaffForm
 import datetime
 from django.contrib.auth.models import User
 
@@ -15,13 +16,21 @@ def userProfile(request):
 
 def staffPage(request):
     users = User.objects.all()
+    # print(User._meta.get_fields())
     context = {
         'users': users
     }
     return render(request, 'diyproduct/staff_list.html', context)
 
 def create_staff(request):
-    return render(request, 'diyproduct/new_staff.html', {})
+    form = CreateStaffForm()
+    if request.method == 'POST':
+        form = CreateStaffForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('staffpage'))
+    context = {'form': form}
+    return render(request, 'diyproduct/new_staff.html', context)
 
 def create_order(request):
     if request.user.is_authenticated:
