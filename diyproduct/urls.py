@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from userupload.views import import_csv
 
 urlpatterns = [
     path('', views.index, name='dashboard'),
@@ -9,4 +10,5 @@ urlpatterns = [
     path('staff/', views.staffPage, name='staffpage'),
     path('profile/', views.userProfile, name='profilePage'),
     path('create-staff', views.create_staff, name='create_staff'),
+    path('create-store/', import_csv, name='import_store'),
 ]
